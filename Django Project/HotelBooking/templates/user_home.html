@@ -1,0 +1,471 @@
+{% extends 'Admin_base.html' %} {% load static %} {% block css %} {% endblock css %}
+{% block body %}
+
+
+
+<!-- Carousel Here -->
+
+
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'image/1.jpg' %}" class="d-block w-100" alt="..." height="600" width="100">
+      <div class="carousel-caption d-none d-md-block">
+        <h1><b> SAHARA HOTEL </b></h1>
+        <h3>Some representative placeholder content for the first slide.</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'image/2.jpg' %}" class="d-block w-100" alt="..." height="600" width="100">
+      <div class="carousel-caption d-none d-md-block">
+        <h2>Winsom Palace</h2>
+        <h3>Some representative placeholder content for the second slide.</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'image/3.jpg' %}" class="d-block w-100" alt="..." height="600" width="100">
+      <div class="carousel-caption d-none d-md-block">
+        <h2>Aspire Hotel</h2>
+        <h3>Some representative placeholder content for the third slide.</h3>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'image/4.jpeg' %}" class="d-block w-100" alt="..." height="600" width="100">
+      <div class="carousel-caption d-none d-md-block">
+        <h2>Sahara Hotel</h2>
+        <h3>Some representative placeholder content for the third slide.</h3>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!---->
+
+
+
+
+
+
+
+<div class="container-fluied  bg-info p-5 mb-5">
+  <div class="row">
+    <div class="col-2 mx-2 me-2">
+      <ul class="list-group bg-white mt-5">
+        <li class="list-group-item bg-dark ">
+          <a class="text-decoration-none" href="{% url 'userHome' %}"> <b> Facilities </b> </a>
+        </li>
+        {% for i in category_new %}
+
+        <li class="list-group-item bg-white ">
+          <a class="text-decoration-none" id="anio" href="{% url 'cat' i.id %}">{{i.title}}</a>
+        </li>
+        {% endfor %}
+      </ul>
+
+
+      <style>
+        #cater:hover {
+          color: yellow;
+        }
+
+        #anio:hover {
+          color: rgb(9, 9, 0);
+        }
+      </style>
+
+      <!-- <div class="col-sm-12 ">
+        <ul class="list-group bg-white mt-5">
+          <li class="list-group-item bg-dark ">
+            <a class="text-decoration-none" href="{% url 'show' %}"> All Catogaries </a>
+          </li>
+          {% for i in category_new %}
+  
+          <li class="list-group-item bg-white ">
+            <a class="text-decoration-none" href="{% url 'cat' i.id %}">{{i.title}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+   -->
+
+
+
+    </div>
+
+
+
+
+
+    <div class="col-sm-9">
+      <div class="row">
+        {% for i in new %}
+
+        <div class="col-sm-4 ">
+
+          <div class="card mt-5 d-flex  rounded" style="width: 25rem">
+            <a href="{% url 'view' i.id %}"> <img src="/media/{{i.image}}" class="card-img-top " id="zoom1" alt=""
+                width="500" height="300"></a>
+            <div class="card-body border-primary">
+              <h2 class="card-title">{{i.Name}}</h2>
+              <h5 class="card-text">{{i.location}}</h5>
+              <p class="card-text ">{{i.HotelInfo|truncatechars:10}}</p>
+
+              <p class="card-text">{{i.upload_date}}</p>
+
+
+              <td>
+                <form action="{% url 'book_hotel' i.id %}" method="POST" class="glow-on-hover">
+                  {% csrf_token %}
+                  <input type="submit" value="Book" class="btn btn-primary border-dark " id="color2">
+              </td>
+
+              <h5 class=" text-primary text-end " style="float: inline-end;"> &#8377; {{i.Ammount}} Per Night</h5>
+
+
+            </div>            
+
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- css add on card -->
+
+
+
+
+
+
+
+
+
+
+<script>
+  function alertmsg() {
+    let text = "Press a button!\nEither OK or Cancel.";
+    if (confirm(text) == true) {
+      text = "You pressed OK!";
+    } else {
+      text = "You canceled!";
+    }
+    document.getElementById("zoom1").innerHTML = text;
+  }
+</script>
+
+
+
+<style>
+  #color2:hover {
+    background-color: hsl(106, 94%, 50%);
+  }
+</style>
+
+
+<!--new slot-->
+
+
+
+<style>
+  #zoom1 {
+
+
+    transition: transform .2s;
+    /* Animation */
+    margin: 0 auto;
+
+  }
+
+  #zoom1:hover {
+
+
+    transform: translateY(-30px);
+    padding: 5px;
+
+
+
+  }
+
+
+
+
+
+  #circle {
+
+
+    transition: transform .2s;
+    /* Animation */
+    margin: 0 auto;
+
+  }
+
+  #circle:hover {
+    transform: scale(1.5);
+
+  }
+
+
+  .iname2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.5rem;
+    background-color: white;
+    text-align: center;
+
+  }
+</style>
+
+
+<style>
+  #card2 {
+
+    position: relative;
+    color: rgb(3, 5, 6);
+    animation: slide 10s linear infinite;
+
+  }
+
+  #card2:hover {
+    color: rgb(255, 13, 0);
+
+  }
+
+
+  @keyframes slide {
+    to {
+      -moz-transform: translateX(10%);
+      -webkit-transform: translateX(10%);
+      transform: translateX(10%);
+    }
+
+    from {
+      moz-transform: translateX(-10%);
+      -webkit-transform: translateX(-10%);
+      transform: translateX(-10%)
+    }
+  }
+</style>
+
+
+
+
+
+
+
+
+
+<h1 class="mx-5 mb-5 " style="text-align: center;" id="card2"> <b> Top Availables Hotels </b></h1>
+
+<div class="col-9 mx-auto bg-info rounded p-5 mb-5 ">
+  <div class="row">
+    {% for i in new %}
+    <div class="col-sm-4">
+      <div class=" my-4 border border-info shadow-lg">
+        <a href="{% url 'view' i.id %}"> <img src="/media/{{i.image}}" class="card-img-top" id="circle" alt=""
+            width="100" height="250"> </a>
+        <h2 class="iname2">{{i.Name}}</h2>
+        <div class="card-body border-primary">
+
+        </div>
+
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+
+<br>
+
+
+
+
+
+
+
+
+<!-- About Page -->
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hotel About Us</title>
+  <style>
+    /* CSS for the About Us section */
+
+    #aboutpage {
+      margin: 20px 20px 20px 20px;
+      border-radius: 50px;
+    }
+
+    #about-us {
+
+      padding: 20px;
+      margin: 40px 40px;
+
+
+
+    }
+
+    #about-us h2 {
+      color: #333;
+      font-size: 55px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: bold;
+      border-radius: 35px;
+    }
+
+    #about-us p {
+
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.5;
+      font-size: 25px;
+      flex-direction: initial;
+
+    }
+  </style>
+</head>
+<h1 class="mx-5 mb-5 " style="text-align: center;" id="card2"><b>About Our Hotel</b></h1>
+<div class="about-div bg-info p-3 h4" id="aboutpage">
+
+  <body>
+    <div id="about-us">
+
+      <p>Welcome to our luxurious and comfortable hotel. At our hotel, we strive to make your stay memorable and
+        enjoyable. Whether you're here for a business trip or a relaxing vacation, we provide top-notch services and
+        amenities to meet your every need.</p>
+      <p>Our dedicated staff is committed to making your experience with us truly special. We offer spacious and
+        well-appointed rooms, exquisite dining options, and a variety of recreational activities to ensure your stay is
+        nothing short of perfect.</p>
+      <p>Explore our website to learn more about our facilities and book your stay with us today. We can't wait to
+        welcome you and make your visit a remarkable one.</p>
+    </div>
+  </body>
+
+</div>
+
+</html><br>
+
+
+
+
+
+
+
+<style>
+  #hotel-services {
+
+    padding: 20px;
+    text-align: center;
+    margin: 20px 20px 20px 20px;
+    border-radius: 50px;
+
+    /* background: url('{% static "image/6.jpeg" %}'); */
+    /* background-size: cover; */
+
+
+
+  }
+
+  #hotel-services h1 {
+    color: #0d0e0d;
+    font-size: 50px;
+    /* background-color: chartreuse; */
+    padding: 15px 15px 20px 20px;
+    border-radius: 30px;
+    margin-top: 40px;
+  }
+
+  #hotel-services ul {
+    list-style-type: none;
+    padding: 0;
+
+  }
+
+  #hotel-services li {
+    font-size: 18px;
+    margin: 10px 0;
+    margin-top: 50px;
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  /* Style the list items with custom icons or background images */
+  #hotel-services li::before {
+    content: "\2022";
+    /* Bullet character (•) */
+    margin-right: 10px;
+    color: #ff6600;
+    /* Custom icon color */
+  }
+
+  #hotel-services ul {
+    margin-top: 20px;
+  }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Hotel Services</title>
+</head>
+
+<body>
+  <h1 class="mx-5 mb-5 " style="text-align: center;" id="card2"><b>Our Hotel Services</b></h1>
+  <div id="hotel-services" class="bg-info">
+
+    <ul>
+      <li>Comfortable Rooms</li>
+      <li>Swimming Pool</li>
+      <li>Restaurant</li>
+      <li>24/7 Room Service</li>
+      <li>Spa & Wellness Center</li>
+      <li>Free Wi-Fi</li>
+    </ul>
+  </div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+<br>
+
+{% endblock body %}

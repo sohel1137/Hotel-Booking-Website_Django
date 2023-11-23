@@ -1,0 +1,69 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+
+
+
+<style>
+    #fixed123{
+      background: url('{% static "image/6.jpeg" %}');
+      background-size: cover;
+      background-position:center;
+     
+    }
+  
+    .forms-se1{
+      font-weight: bold;
+      padding-top: 5px;
+      
+    }
+    #sec-update1{
+        background: transparent;
+        border: black line;
+        box-shadow: 25px;
+        color: rgb(3, 16, 1);
+        font-size: larger;
+       
+    }
+  </style>
+
+
+
+
+<div class="container-fluied mx-auto  p-4  " id="fixed123">
+
+
+    <div class="container col-sm-4 card border-dark mx-1 mt-5 p-4 mb-5 me-5" id="sec-update1" >
+    
+        <h2 class="mb-3 text-center " style="color: rgb(12, 15, 12); text-shadow: 35px;" > <b> ADD CATEGORY</b></h2><hr>
+                <form action="" method="POST" class="forms-se1"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if messages %}
+                {{message.tags}}
+              <div class="alert alert-primary" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+                </div>
+                {% endif %}
+        
+            {{form.as_p}}
+            <input class="btn btn-success mt-3" type="submit" name="submit" id="" value="submit" >
+            <input class="btn btn-danger mt-3" type="reset" name="submit" id="" value="clear" >
+        
+            </form>
+          </div>
+          
+
+          
+    
+        </div>
+
+        
+
+
+
+
+{% endblock body %}

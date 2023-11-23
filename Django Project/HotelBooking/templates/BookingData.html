@@ -1,0 +1,131 @@
+{% extends 'Admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container-fluied bg-info " id="Bookingdata">
+
+
+
+  <div class="col-sm-9 mt-5 my-5 p-5 mx-auto sec-col border-dark card" id="bgj">
+    <h2 style="text-align: center;" id="booking"> <b> BOOKING DATA </b> </h2>
+    <hr>
+
+    {% if form %}
+    <table class="table border-dark ">
+
+      <thead>
+        <tr>
+          <th scope="col " id="sdata"> ID </th>
+          <th scope="col" id="sdata"> hotel </th>
+          <th scope="col" id="sdata"> user </th>
+          <th scope="col" id="sdata"> start_date </th>
+          <th scope="col" id="sdata"> end_date </th>
+
+          <th scope="col" id="sdata"> booking_type </th>
+          <th scope="col" id="sdata"> Room Type </th>
+          <th scope="col" id="sdata"> Cancel </th>
+
+
+        </tr>
+
+        
+      </thead>
+      <tbody>
+        {% for i in m %}
+        <tr>
+          <td class="trdata"><b>{{i.id}}</b></td>
+          <td class="trdata"><b>{{i.hotel}}</b></td>
+          <td class="trdata"><b>{{i.user}}</b></td>
+          <td class="trdata"><b>{{i.start_date}}</b></td>
+          <td class="trdata"><b>{{i.end_date}}</b></td>
+          <td class="trdata"><b>{{i.booking_type}}</b></td>
+          <td class="trdata"><b>{{i.room_type}}</b></td>
+          <td>
+            <form action="{% url 'AdminCancelBooking' i.id %}" method="POST">
+              {% csrf_token %}
+              <input type="submit" value="Cancel" class="btn btn-danger"></form>
+        </td>
+
+
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    {% else %}
+
+
+    <h1 > Booking Not Availables </h1>
+
+    {% endif %}
+
+      </table>
+
+    </div>
+
+</div> 
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  #Bookingdata {
+    background: url('{% static "image/6.jpeg" %}');
+    background-size: cover;
+    background-position: start;
+
+  }
+
+
+
+  #Bookingdata {
+
+    height: 500px;
+    display: flex;
+    background-size: cover;
+
+  }
+
+
+  #sdata {
+    background-color: rgb(244, 174, 113);
+
+  }
+
+</style>
+
+
+{% endblock body %}

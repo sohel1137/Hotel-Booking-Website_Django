@@ -1,0 +1,69 @@
+{% extends 'Admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head >
+    <title>Update Booking</title>
+</head>
+<body >
+
+    
+
+<div class=" container-fluid  " style="display: flex;" id="Book4">
+
+    <div class="container card rounded-lg col-sm-4 mt-5 card mx-5 p-4 bg-transparent border-dark mb-5" >
+  
+      <h1 class="mb-3 text-center"> <b> UPDATE BOOKING {{ hotel.name }}</b></h1>
+      <hr>
+      <form action="" method="POST">
+        
+        {% if messages %}
+        {{message.tags}}
+        <div class="alert alert-primary" role="alert">
+          {% for message in messages %}
+          {{ message }}
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% csrf_token %}
+        {{form.as_p}}
+        <div style="float: inline-end;" class="do1">
+          <button type="submit" id="submit1" class="btn btn-success">Submit</button>
+          <td>
+            <a href="{% url 'userHome' %} " class="btn btn-danger " id="submit1"><b> Back </b></a>
+          </td>
+
+        </div>
+       
+      </form>
+    </div>
+  
+  </div>
+
+
+
+  
+
+
+</body>
+</html>
+
+
+<style>
+#Book4{
+  background: url('{% static "image/6.jpeg" %}');
+  background-size: cover;
+  background-position: start;
+ 
+}
+
+</style>
+
+
+
+
+
+{% endblock body %}

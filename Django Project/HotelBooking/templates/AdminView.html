@@ -1,0 +1,88 @@
+
+{% extends 'admin_base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+
+<!-- 
+<div class="row">  
+        
+<div class="col-9 mx-5 me-5 mt-5 ">
+
+ 
+  
+  
+      
+      
+   
+      {% for i in form %}
+      <div class="col-sm-4">
+        <div class="card my-4 border border-info shadow-lg">
+          <img src="/media/{{i.image}}" class="card-img-top " alt="" width="600" height="450">
+          <div class="card-body border-primary">
+            <h2 class="card-title"><b><span style="color: rgb(255, 4, 4);">{{i.Name}}</span></b></h2>
+            <h5 class="card-text">{{i.location}}</h5>
+            <p class="card-text">{{i.HotelInfo}}</p>
+            <p class="card-text">{{i.upload_date}}</p>
+            
+          
+            <td>
+              <form action="{% url 'book_hotel' i.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Book" class="btn btn-success">
+          </td>
+            <td>
+              <a href="{% url 'userHome' %} " class="btn btn-warning "> Back</a>
+            </td>
+              
+          </div>
+  
+        </div>
+  
+      </div>
+      {% endfor %}
+
+    </div>
+
+    
+
+
+  </div>
+  
+  
+
+
+    </div>
+</div> -->
+
+
+    
+
+
+<div class="card mb-3 mt-1" >
+  {% for i in form %}
+  <img src="/media/{{i.image}}" class="card-img-top  " alt="" width="600" height="600">
+  <div class="card-body text-center ">
+    <h1 class="card-title"><b><span style="color: rgb(255, 4, 4);">{{i.Name}}</span></b></h1>
+    <h5 class="card-text">{{i.location}}</h5>
+    <p class="card-text">{{i.HotelInfo}}</p>
+  
+    
+<!--   
+    <td>
+      <form action="{% url 'book_hotel' i.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Book" class="btn btn-success">
+  </td> -->
+    <td>
+      <a href="{% url 'show' %} " class="btn btn-warning "> Back</a>
+    </td>
+    {% endfor %}
+  </div>
+
+
+    
+<br><br>
+{% endblock body %}

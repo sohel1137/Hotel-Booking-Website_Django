@@ -1,0 +1,203 @@
+{% load static %}
+
+
+
+<!--Nvbar Search Website Logo Here -->
+
+<nav class="navbar  navbar-dark bg-dark ">
+  <div class="container-fluid ">
+    <a class="navbar-brand" href="{% url 'show' %}"><b> <span style="color: chartreuse;"> P A R A D I S E </span>
+      </b></a>
+    <h3 class="text-light" id="slogan">search, find and book your hotel worldwide online </h3>
+
+    <form class="d-flex" action="{% url 'search' %}" method="POST">
+      {% csrf_token %}
+      <input class="form-control me-2" type="search" name="search" placeholder="Search a Hotel" aria-label="Search">
+      <button class="btn btn-danger" value="search" style="background-color: rgb(55, 255, 0); color:black;"
+        type="submit">Search</button>
+
+
+
+
+    </form>
+
+  </div>
+</nav>
+
+<!--Navbar Here-->
+
+<nav class="navbar navbar-expand-lg  navbar-dark bg-primary shadow-lg text-dark sticky-top">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#"><b> <span style="color: chartreuse;"> P  A  R  A  D  I  S  E </span> </b></a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    {% if user.is_authenticated == False %}
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav h5 sec-li">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="{% url 'userHome' %}">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Sign-In
+            </button>
+            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="{% url 'userlogin' %}">User Login</a>
+              <a class="dropdown-item" href="{% url 'Adminlogin' %}">Admin Login</a>
+            </div>
+          </div>
+
+          {% elif user.is_staff %}
+        <ul class="navbar-nav h4 my-1 mx-4 " id="sec-li">
+
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'show' %}">Home</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'BookingData' %}">Booking Data</a>
+          </li>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'AddHotel' %}">Add Hotel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'catgory' %}">Add Catogaries</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'userdata' %}">Customer Data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">logout</a>
+          </li>
+       
+
+          
+      </ul>
+      <ul class="navbar-nav">
+      <li class="nav-item  p-2 ">
+        <!-- <h3 style="justify-content: last baseline;" > welcome {{request.user}}</h3> -->
+        <a href="{% url 'userprofile' %}"> <i class="bi bi-person-circle h3" style="justify-content: flex-end; color: black;">  </i> </a> <b class="h3">welcome {{request.user}}</b>
+      </li>
+    </ul>
+
+        {% else %}
+        <ul class="navbar-nav h3 mx-4 my-1 " id="sec-li">
+        <li class="nav-item  ">
+         
+          <a class="nav-link" href="{% url 'userHome' %}">Home</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'Userbookingdata' %}"> Your Booking</a>
+        </li>
+
+<!--         
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Update Booking</a>   
+        </li>  -->
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'UpdateUserData' %}"> Update Profile</a>   
+        </li> 
+
+        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'userprofile' %}"> Profile </a>   
+        </li> 
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">logout</a>
+        </li>
+
+       
+      </ul>
+    </ul>
+    <ul class="navbar-nav">
+    <li class="nav-item  p-2 ">
+      <!-- <h3 style="justify-content: last baseline;" > welcome {{request.user}}</h3> -->
+      <a href="{% url 'userprofile' %}"> <i class="bi bi-person-circle h3" style="justify-content: flex-end; color: black;">  </i> </a> <b class="h3">welcome {{request.user}}</b>
+    </li>
+  </ul>
+
+
+
+        {% endif %}
+
+       
+        
+
+     
+    </div>
+   
+  
+
+
+
+  </div>
+
+</nav>
+
+
+
+{% block css %}
+
+
+
+
+<style>
+  #slogan {
+
+    position: relative;
+    color: aliceblue;
+    animation: slide 10s linear infinite;
+
+  }
+
+  #sec-li li a:hover {
+   
+    color: #030600fc;
+    cursor: pointer;
+  }
+
+  @keyframes slide {
+    to {
+      -moz-transform: translateX(30%);
+      -webkit-transform: translateX(30%);
+      transform: translateX(30%);
+    }
+
+    from {
+      moz-transform: translateX(-30%);
+      -webkit-transform: translateX(-30%);
+      transform: translateX(-30%)
+    }
+  }
+</style>
+
+
+
+
+
+{% endblock css %}
+
+
+
+{% block js %}
+
+
+
+
+{% endblock js %}

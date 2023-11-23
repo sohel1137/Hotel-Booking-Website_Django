@@ -1,0 +1,77 @@
+
+{% extends 'Admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container-fluied bg-info p-5" style="display: flex;" id="sdd">
+
+    
+
+<div class=" card col-sm-6 mx-1 mt-5 my-5 mx-auto border-dark" id="userd" style="padding: 20px 20px;">
+  <h1 style="text-align: center;" class="mt-3 bg-transparent " id="names"> CUSTOMER DETAILS </h1><hr>
+
+    {% if form %}
+    <table class="table border-dark  ">
+  
+        <thead>
+        <tr>
+            <th scope="col"  id="sdata"> ID </th>
+            <th scope="col"  id="sdata"> UserName </th>
+            <th scope="col"  id="sdata"> first_name </th>
+            <th scope="col"  id="sdata"> last_name </th>
+            <th scope="col"  id="sdata"> email </th>
+            <th scope="col"  id="sdata"> Delete </th>
+            <!-- <th scope="col"  id="sdata"> location </th>
+            <th scope="col"  id="sdata"> contact </th>
+  -->
+        </tr>
+        </tr>
+    </thead>
+    <tbody >
+         {% for i in m %}
+        <tr>
+            <td id="tdbd"><b>{{i.id}}</b></td>
+            <td id="tdbd"><b>{{i.username}}</b></td>
+            <td id="tdbd"><b>{{i.first_name}}</b></td>
+            <td id="tdbd"><b>{{i.last_name}}</b></td>
+            <td id="tdbd"><b>{{i.email}}</b></td>
+            <td>
+              <form action="{% url 'AdminUSerDelete' i.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Delete" class="btn btn-danger"></form>
+          </td>
+  
+        </tr>
+        {% endfor %}
+    </tbody>
+  {% else %}
+  
+  {% endif %}
+  
+    </table>
+  
+  </div>
+
+</div>
+
+
+<style>
+
+  #sdd{
+    background: url('{% static "image/6.jpeg" %}');
+    background-size: cover;
+    background-position: start;
+  }
+
+
+
+  #sdata{
+    background-color: rgb(169, 217, 10);
+  }
+ 
+
+</style>
+
+
+{% endblock body %}

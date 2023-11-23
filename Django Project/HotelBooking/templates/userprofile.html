@@ -1,0 +1,187 @@
+
+{% extends 'Admin_base.html' %}
+{% load static %}
+
+{% block body %}
+<!-- 
+<div class="container-fluied bg-info p-5" style="display: flex;" id="sdd">
+
+    
+
+<div class=" card col-sm-9 mt-5 my-5 mx-auto border-dark  " id="userd" style="padding: 20px 20px;">
+  <h1 style="text-align: center;" class="mt-3 bg-transparent " id="names"> Your Profile </h1><hr>
+
+    {% if form %}
+    <table class="table border-dark  ">
+  
+        <thead>
+        <tr>
+            <th scope="col"  id="sdata"> ID </th>
+            <th scope="col"  id="sdata"> UserName </th>
+            <th scope="col"  id="sdata"> first_name </th>
+            <th scope="col"  id="sdata"> last_name </th>
+            <th scope="col"  id="sdata"> email </th>
+            <th scope="col"  id="sdata"> location </th>
+            <th scope="col"  id="sdata"> contact </th>
+ 
+        </tr>
+        </tr>
+    </thead>
+    <tbody >
+         {% for i in m %}
+        <tr>
+            <td id="tdbd"><b>{{i.id}}</b></td>
+            <td id="tdbd"><b>{{i.username}}</b></td>
+            <td id="tdbd"><b>{{i.first_name}}</b></td>
+            <td id="tdbd"><b>{{i.last_name}}</b></td>
+            <td id="tdbd"><b>{{i.email}}</b></td>
+            <td id="tdbd"><b>{{i.location}}</b></td>
+            <td id="tdbd"><b>{{i.contact}}</b></td>
+
+
+        
+        </tr>
+        {% endfor %}
+    </tbody>
+  {% else %}
+  
+  {% endif %}
+  
+    </table>
+  
+  </div>
+
+</div> -->
+
+<div class="container-fluid p-5" id="profile1" style="display: flex;">
+
+
+
+
+
+<div class="container col-sm-3 bg-dark text-light border-dark mx-5 shadow-lg mt-5 mb-5 p-3  " style="border-radius: 30px;"  >
+
+  <h1 class="text-center" style="color: rgb(237, 255, 71);"> <b>PROFILE</b> </h1><hr>
+
+  <center> 
+
+
+      <h1 > Hello,{{ user.first_name }}</h1>
+      <hr>
+      <table>
+          <td>
+              <p>Name : {{user.first_name}} {{user.last_name}}</p>
+      
+              <p>Email : {{ user.email }}</p>
+  
+              <p>Username : {{ user.username }}</p>
+
+              
+
+              
+
+              <hr>
+
+              <p>  Update Your Profile  <a href="{% url 'UpdateUserData' %}">  Here </a> </p> 
+              <!-- <p> <b>Change Your Password </b> <a href=""> Here </a> </p> -->
+          </td>
+      </table>
+    </div>
+
+  </center>
+
+
+<!--   
+<div class="container col-sm-3 border-dark mx-5 shadow-lg mt-5 mb-5 p-3  " style="border-radius: 30px;"  >
+
+  <h1 class="text-center" style="color: rgb(237, 255, 71);">Profile</h1><hr>
+
+  <center> 
+
+
+      <h1 > Hello,{{ user.first_name }}</h1>
+      <hr>
+      <table>
+          <td>
+              <p><b>Name : </b>{{user.first_name}} {{user.last_name}}</p>
+      
+              <p><b>Email :</b> {{ user.email }}</p>
+  
+              <p><b>Username :</b> {{ user.username }}</p>
+
+              
+
+              
+
+              <hr>
+
+              <p> <b> Update Your Profile </b> <a href="{% url 'UpdateUserData' %}"> here </a> </p> 
+              <p> <b>Change Your Password </b> <a href=""> here </a> </p>
+          </td>
+      </table>
+    </div>
+
+  </center>
+
+</div>
+
+</div> -->
+
+
+<br><br><br>
+
+</div>
+
+
+
+
+
+
+
+<style>
+#profile1{
+  background: url('{% static "image/6.jpeg" %}');
+  background-size: cover;
+  background-position: center;
+  
+ 
+}
+
+</style>
+
+<!-- 
+
+<style>
+
+  #sdd{
+    background: url('{% static "image/6.jpeg" %}');
+    background-size: cover;
+    background-position: start;
+  }
+
+
+
+  #names:hover{
+    color:red;
+  }
+  #sdata{
+    background-color: chartreuse;
+  }
+  #sdata:hover{
+    background-color: rgb(247, 33, 4);
+  }
+
+  #tdbd:hover{
+    background-color: rgb(223, 243, 0);
+    cursor: pointer;
+
+  }
+  
+  #userd:hover{
+    background-color: gold;
+  }
+
+</style> -->
+
+
+{% endblock body %}

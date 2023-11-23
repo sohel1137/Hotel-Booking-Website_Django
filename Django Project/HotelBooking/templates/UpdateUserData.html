@@ -1,0 +1,63 @@
+{% extends 'Admin_base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock css %}
+
+
+{% block body %}
+
+
+<style>
+  .sec-dis1 {
+   
+    background: url('{% static "image/6.jpeg" %}');
+    background-size: cover;
+    display: flow-root;
+    bottom: 0;
+  }
+  #sec-fod{
+    background-color: rgba(255, 255, 255, 0.177);  
+    backdrop-filter: blur(5px);
+  }
+
+  
+</style>
+
+<div class=" container-fluid sec-dis1  ">
+
+  <div class="card rounded-lg col-sm-5 mt-5 card mx-5 p-4 border-dark mb-5 " id="sec-fod" style="height: 30%; width: 40%;" >
+
+    <h1 class="mb-3 text-center" > <b> UPDATE USER PROFILE </b></h1>
+    <hr>
+    <form action="" method="POST">
+      {% csrf_token %}
+      {% if messages %}
+      {{message.tags}}
+      <div class="alert alert-primary" role="alert">
+        {% for message in messages %}
+        {{ message }}
+        {% endfor %}
+      </div>
+      {% endif %}
+  
+      {{form.as_table}}
+      <input class="btn btn-success mt-3" type="submit" name="submit" id="" value="Submit">
+      <input class="btn btn-danger mt-3" type="reset" name="clear" id="" value="clear">
+  
+  
+    </form>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

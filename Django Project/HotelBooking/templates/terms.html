@@ -1,0 +1,84 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Terms and Conditions</title>
+    <style>
+        
+
+        #container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+           
+            
+        }
+
+        #termss{
+            text-align: center;
+            margin-top: 40px;
+            font-size: 50px;
+            background-color: chartreuse;
+            border-radius: 30px;
+            padding: 20px 20px 20px 20px;
+        }
+
+        #terms {
+           margin-top: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        
+
+
+        #paragraph {
+            margin-bottom: 20px;
+            font-size: 25px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="termss">Hotel Terms and Conditions</h1>
+        <div id="terms">
+            <h2>Booking Terms</h2><br>
+
+            <p  id="paragraph">A reservation can be made up to 6 months in advance.</p>
+            <p  id="paragraph">Payment must be made in full at the time of booking.</p>
+
+           
+          
+
+            <h2>Cancellation Policy</h2><br>
+            <p id="paragraph">If you need to cancel your reservation, please do so at least 48 hours in advance to avoid a cancellation fee.</p>
+
+            <h2>Check-In and Check-Out</h2><br>
+            <p  id="paragraph">Check-in time is 3:00 PM, and check-out time is 11:00 AM.</p>
+
+            <h2>Pets</h2><br>
+            <p  id="paragraph">Pets are not allowed in the hotel.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br>
+{% endblock body %}

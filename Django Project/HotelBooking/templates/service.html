@@ -1,0 +1,89 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+
+
+<style>
+    #hotel-services {
+        
+        padding: 20px;
+        text-align: center;
+        /* background: url('{% static "image/6.jpeg" %}'); */
+        /* background-size: cover; */
+       
+        
+        
+    }
+
+    #hotel-services h1 {
+        color: #333;
+        font-size: 50px;
+        background-color: chartreuse;
+        padding: 15px 15px 20px 20px;
+        border-radius: 30px;
+        margin-top: 40px;
+    }
+
+    #hotel-services ul {
+        list-style-type: none;
+        padding: 0;
+        
+    }
+
+    #hotel-services li {
+        font-size: 18px;
+        margin: 10px 0;
+        margin-top: 50px;
+        font-size: 40px;
+        font-family: 'Times New Roman', Times, serif;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    /* Style the list items with custom icons or background images */
+    #hotel-services li::before {
+        content: "\2022";
+        /* Bullet character (•) */
+        margin-right: 10px;
+        color: #ff6600;
+        /* Custom icon color */
+    }
+
+    #hotel-services ul {
+        margin-top: 20px;
+    }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hotel Services</title>
+</head>
+
+<body>
+    <div id="hotel-services">
+        <h1>Our Hotel Services</h1>
+        <ul>
+            <li>Comfortable Rooms</li>
+            <li>Swimming Pool</li>
+            <li>Restaurant</li>
+            <li>24/7 Room Service</li>
+            <li>Spa & Wellness Center</li>
+            <li>Free Wi-Fi</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+
+
+
+<br><br>
+{% endblock body %}

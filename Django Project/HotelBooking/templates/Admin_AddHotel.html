@@ -1,0 +1,136 @@
+{% extends 'Admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+
+<style>
+  #fixe{
+    background: url('{% static "image/6.jpeg" %}');
+    background-size: cover;
+    background-position: start;
+   
+  }
+
+  .forms-s{
+    font-weight: bold;
+    padding-top: 5px;
+  }
+
+  #sec-add{
+    
+    background: transparent;
+    border: black line;
+    box-shadow: 25px;
+    color: rgb(3, 16, 1);
+    font-size: larger;
+  }
+</style>
+
+
+<div class="row">
+  <div class="col-sm8" id="fixe">
+
+    
+<div class="container col-sm-5 mt-5 mx-5 p-4 shadow-lg" id="sec-add">
+  <h2 class="mb-3"> <b> ADD HOTEL </b></h2><hr>
+          <form action="" method="POST" class="forms-s"  enctype="multipart/form-data">
+              {% csrf_token %}
+              {% if messages %}
+          {{message.tags}}
+          
+        <div class="alert alert-primary" role="alert">
+          {% for message in messages %}
+          {{ message }}
+          {% endfor %}
+          </div>
+          {% endif %}
+          
+  
+      {{forms.as_p}}
+      <input class="btn btn-success mt-3" type="submit" name="submit" id="" value="submit" >
+      <input class="btn btn-danger mt-3" type="reset" name="submit" id="" value="clear" >
+  
+      </form>
+    </div>
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+<div class="col-sm-9 mt-5 my-5 mx-auto sec-col">
+  {% if forms %}
+  <table class="table bg-transparent"  >
+
+      <thead>
+      <tr>
+          <th scope="col"> ID </th>
+          <th scope="col"> Name </th>
+          <th scope="col"> Location </th>
+          <th scope="col"> HotelInforamation </th>
+          <!-- <th scope="col"> image </th> -->
+          <th scope="col"> update </th>
+          <th scope="col"> Delete </th>
+      </tr>
+      </tr>
+  </thead>
+  <tbody>
+       {% for i in m %}
+      <tr>
+        <td><b>{{i.id }}</b></td>
+        <td><b>{{i.Name}}</b></td>
+        <td><b>{{i.location}}</b></td>
+        <td ><b>{{i.HotelInfo|truncatechars:10}}</b></td>
+        <!-- <td><a href="/media/{{i.image}}"></a>{{i.image}}</td>
+       -->
+  
+            <td>
+              <a href="{% url 'update' i.id %}" class="btn btn-warning  ">Update</a></td>
+
+            <td>
+              <form action="{% url 'deleteh' i.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="delete" class="btn btn-danger">
+                </form>
+          </td>
+
+
+          
+
+
+      </tr>
+      {% endfor %}
+  </tbody>
+{% else %}
+
+{% endif %}
+
+  </table>
+
+</div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

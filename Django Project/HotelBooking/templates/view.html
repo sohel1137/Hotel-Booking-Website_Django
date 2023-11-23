@@ -1,0 +1,149 @@
+
+{% extends 'admin_base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+
+   
+
+
+
+
+<div class="container-fluied">
+  {% for i in form %}
+  <img src="/media/{{i.image}}" class="card-img-top shadow-lg  " alt="" width="600" height="600">
+
+
+<div class=""  >
+
+  
+  <div class="card-body text-center  ">
+    <h1 class="card-title p-3"><b><span style="color: rgb(12, 1, 1);">{{i.Name}}</span></b></h1><br>
+    <h2 class="card-text">{{i.location}}</h2><br>
+    <p class="card-text h4 ">{{i.HotelInfo}}</p><br>
+    <h5 class="card-text"> Facilities {{i.cat}}</h5><br>
+    <h3 class="card-text"> &#8377; {{i.Ammount}} Per Night</h3><br>    
+  
+    <td>
+      <form action="{% url 'book_hotel' i.id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Book" class="btn btn-success">
+  </td>
+    <td>
+      <a href="{% url 'userHome' %} " class="btn btn-danger "><b> Back </b></a>
+    </td>
+    
+  </div>
+  {% endfor %}
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <style>
+    #hotel-services {
+        
+        padding: 20px;
+        text-align: center;
+        /* background: url('{% static "image/6.jpeg" %}'); */
+        /* background-size: cover; */
+       
+        
+        
+    }
+
+    #hotel-services h1 {
+        color: #333;
+        font-size: 50px;
+        
+        padding: 15px 15px 20px 20px;
+        border-radius: 30px;
+        margin-top: 40px;
+    }
+
+    #hotel-services ul {
+        list-style-type: none;
+        padding: 0;
+        
+    }
+
+    #hotel-services li {
+        font-size: 18px;
+        margin: 10px 0;
+        margin-top: 50px;
+        font-size: 40px;
+        font-family: 'Times New Roman', Times, serif;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+    /* Style the list items with custom icons or background images */
+    #hotel-services li::before {
+        content: "\2022";
+        /* Bullet character (•) */
+        margin-right: 10px;
+        color: #ff6600;
+        /* Custom icon color */
+    }
+
+    #hotel-services ul {
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container-fluied ">
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hotel Services</title>
+</head>
+
+<body>
+    <div id="hotel-services">
+        <h1>Our Hotel Services</h1>
+        <ul>
+            <li>Comfortable Rooms</li>
+            <li>Swimming Pool</li>
+            <li>Restaurant</li>
+            <li>24/7 Room Service</li>
+            <li>Spa & Wellness Center</li>
+            <li>Free Wi-Fi</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+
+</div>
+
+    
+
+{% endblock body %}

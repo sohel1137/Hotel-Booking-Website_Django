@@ -1,0 +1,156 @@
+{% extends 'Admin_base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head >
+    <title>Hotel Booking Form</title>
+</head>
+<body >
+
+    
+
+<div class=" container-fluid  " style="display: flex;" id="Book4">
+
+    <div class="container card rounded-lg col-5 mt-5 card mx-5 p-4 border-dark mb-5 bg-transparent " >
+  
+      <h1 class="mb-3 text-center"> <b> BOOK YOUR HOTEL {{ hotel.name }}</b></h1>
+      <hr>
+      <form action="" method="POST">
+        
+        {% if messages %}
+        {{message.tags}}
+        <div class="alert alert-primary" role="alert">
+          {% for message in messages %}
+          {{ message }}
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div >
+          <h5 class="total_price " >Total Price :
+            <span id="totalprice"></span> RS
+          </h5>
+        </div>
+
+        <div style="float: inline-end;">
+
+          <button type="submit" class="btn btn-success">Book Now</button>
+          <button type="reset" class="btn btn-primary">Cancel</button>
+          <td>
+            <a href="{% url 'userHome' %} " class="btn btn-danger "> Back </a>
+          </td>
+
+        </div>
+       
+       
+      </form>
+    </div>
+
+
+<!-- 
+    <div class="col-5 mt-5 mx-auto card mb-5">
+      <h1 class="text-center mt-5" >HOTEL DETAILS</h1>
+      
+
+    </div>
+   -->
+  </div>
+
+  <script>
+
+   
+    // function calculateTotal(){
+    //   var Price = "{{hotel.Ammount}}";
+    //   // var start_date = Price;
+    //   var start_date=document.getElementById('start_date').value;
+    //   alert(start_date)
+    //   var end_date=document.getElementById('end_date').value;
+    //   alert(end_date)
+    //   var num_days = (end_date-start_date).days;
+    //   var total=num_days*Price
+    //   document.getElementById('totalprice').innerHTML =total;
+    // }
+
+    
+    $(document).ready(function () {
+        // Function to calculate total amount
+        function calculateTotalAmount() {
+            var startDate = new Date($('#id_start_date').val());
+            var endDate = new Date($('#id_end_date').val());
+
+            // Assuming your price is stored in a variable called 'Ammount' in the HTML template
+            var price = parseInt('{{ hotel.Ammount }}');
+
+            // Calculate the number of days between start and end date
+            var days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+            // Calculate total amount
+            var totalAmount = price * days;
+
+            // Display the total amount
+    document.getElementById('totalprice').innerHTML =totalAmount;
+
+            // $('#total_amount').text('Total Amount: $' + totalAmount);
+        }
+
+        // Call the function on page load
+        calculateTotalAmount();
+
+        // Attach event listeners to start_date and end_date fields
+        $('#id_start_date, #id_end_date').change(function () {
+            calculateTotalAmount();
+        });
+    });
+
+
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById('start_date').min = today;
+        document.getElementById('end_date').min = today;
+
+        // Ensure start date is greater than or equal to the current date
+        document.getElementById('start_date').addEventListener('change', function() {
+            var startDate = document.getElementById('start_date').value;
+            var today = new Date().toISOString().split('T')[0];
+
+            if (startDate < today) {
+                document.getElementById('start_date').value = today;
+            }
+            // Set the minimum for the end date as the selected start date
+            document.getElementById('end_date').min = startDate;
+        });
+    });
+
+
+    
+</script>
+</body>
+</html>
+
+
+
+
+
+<style>
+#Book4{
+  background: url('{% static "image/6.jpeg" %}');
+  background-size: cover;
+  background-position: start;
+ 
+}
+
+</style>
+
+
+
+
+
+{% endblock body %}

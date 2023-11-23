@@ -1,0 +1,81 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+
+
+
+
+<div class="bg-info" style="display: grid;" id="searching1">
+
+
+<h1 class=" container mx-auto mt-5 mb-5 " style="font-family: Verdana, Geneva, Tahoma, sans-serif;" align="center"></h1>
+{% if x %}
+<div class="col-9 mx-auto mb-5 ">
+    <div class="row">
+    
+      {% for i in x %}
+      <div class="col-sm-4">
+        <div class="card my-4 border border-info  shadow-lg rounded-3" >
+          <img src="/media/{{i.image}}" class="card-img-top " alt="" width="500" height="400">
+          <div class="card-body border-primary">
+            <h2 class="card-title">{{i.Name}}</h2>
+            <h5 class="card-text">{{i.location}}</h5>
+            <p class="card-text">{{i.HotelInfo|truncatechars:10}}</p>
+            <p class="card-text">{{i.upload_date}}</p>
+            
+            <td>
+              <form action="{% url 'book_hotel' i.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Book Now"  class="btn btn-info border-dark " id="color2">
+          </td>
+          
+            <td>
+              <a href="{% url 'userHome' %} " class="btn btn-warning "> Back</a>
+            </td>
+              
+  
+          </div>
+  
+        </div>
+  
+      </div>
+
+      {% endfor %}
+
+      {% else %}
+      <div class="bg-transparent  p-5 mt-5 mb-5">
+        <h1 class="text-center " style="font-size: 50px;">Data Not Found...</h1>
+      </div>
+    {% endif %}
+    </div>
+  </div>
+
+</div>
+
+
+<style>
+  
+ #searching1{
+    background: url('{% static "image/6.jpeg" %}');
+    background-size: cover;
+    background-position: end;
+    padding: 40px 40px;
+   
+  }
+
+</style>
+<!-- yourapp/templates/search.html -->
+{% if api_data %}
+    <!-- API JSON response -->
+    {{ api_data | json_script:"api_data" }}
+{% else %}
+    <!-- HTML content -->
+    
+    <!-- render your HTML content as needed -->
+{% endif %}
+
+
+{% endblock body %}
